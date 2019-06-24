@@ -28,9 +28,9 @@ class Registration extends React.Component {
 
    registration = e => {
     e.preventDefault();
-    this.props.registration(this.state.userInfo).then(res => {
+    this.props.addUser(this.state.userInfo).then(res => {
       if (res) {
-        this.props.history.push('/protected');
+        this.props.history.push('/login');
       }
     });
   };
@@ -74,6 +74,7 @@ class Registration extends React.Component {
                         ) : (
                          'Register'
                         )} */}
+                        Register
                     </button>
                 </form>
             </div>
@@ -83,7 +84,8 @@ class Registration extends React.Component {
  
 const mapStateToProps = state => ({
   error: state.error,
-  registration: state.registration
+  addUser: state.addUser,
+  fetchingData: state.fetchingData
 });
 
 export default connect(
