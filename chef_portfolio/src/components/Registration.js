@@ -1,7 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import Loader from 'react-loader-spinner';
 import { addUser } from '../actions'
+=======
+import { registration } from '../actions'
+>>>>>>> 8128bc6ef991e43c746efbdfe4b68fa40ef1db54
 
 
 class Registration extends React.Component {

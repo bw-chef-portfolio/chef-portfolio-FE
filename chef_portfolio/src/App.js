@@ -1,10 +1,11 @@
 import React from 'react';
-import Registration from './components/Registration'
-import Login from './components/Login'
+import Registration from './components/Registration.js'
 import NavBar from './components/NavBar'
 import RecipePage from './components/RecipePage'
 import { Route, Link } from 'react-router-dom'
 import './App.css';
+import Login from "./components/Login/Login.js";
+import { BrowserRouter as Router } from "react-router-dom";
 
 
 function App() {
