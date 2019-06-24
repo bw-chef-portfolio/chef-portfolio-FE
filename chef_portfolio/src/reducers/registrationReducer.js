@@ -6,7 +6,9 @@ import {
 
 const initialState = {
   error: '',
-  registration: false
+  fetchingData: false,
+  users: [],
+  addUser: []
 };
 
 export const registrationReducer = (state = initialState, action) => {
@@ -15,19 +17,23 @@ export const registrationReducer = (state = initialState, action) => {
       return {
         ...state,
         error: '',
-        registration: true,
+        fetchingData: true
+        
       };
     case REGISTRATION_SUCCESS:
       return {
         ...state,
+        addUser: action.payload,
         error: '',
-        registration: false,
+        fetchingData: false,
+        users: action.payload
+        
       };
     case REGISTRATION_FAILURE:
         return {
             ...state,
             error: action.payload,
-            registration: false
+            fetchingData: false
         }
     default:
         return state 
