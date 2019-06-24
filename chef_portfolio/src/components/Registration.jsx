@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import Loader from 'react-loader-spinner';
+// import Loader from 'react-loader-spinner';
 
 
 class Registration extends React.Component {
