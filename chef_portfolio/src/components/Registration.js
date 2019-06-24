@@ -1,21 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
-import { registration } from '../actions'
+import { addUser } from '../actions'
 
 
 class Registration extends React.Component {
       state = {
         userInfo: {
-            firstName: '',
-            lastName: '',
+            
+            username: '',
+            password: '',
             email: '',
             location: ''
     }
   };
 
   componentDidMount() {
-      this.props.registration()
+      this.props.addUser()
   }
 
   handleChanges = e => {
@@ -29,11 +30,10 @@ class Registration extends React.Component {
 
    registration = e => {
     e.preventDefault();
-    this.props.addUser(this.state.userInfo).then(res => {
-      if (res) {
-        this.props.history.push('/login');
-      }
-    });
+    console.log(this.state.userInfo)
+    this.props.addUser(this.state.userInfo)
+      this.props.history.push('/login');
+   
   };
 
     render() { 
@@ -41,18 +41,18 @@ class Registration extends React.Component {
             <div>
                 <h1>Registration</h1>
                 <form>
-                    <p>First Name </p>
+                    <p>Username: </p>
                     <input
                         type="text"
-                        name="firstName"
-                        value={this.state.userInfo.firstName}
+                        name="username"
+                        value={this.state.userInfo.username}
                         onChange={this.handleChanges}
                     ></input>
-                    <p>Last Name: </p>
+                    <p>Password: </p>
                     <input
                         type="text"
-                        name="lastName"
-                        value={this.state.userInfo.lastName}
+                        name="password"
+                        value={this.state.userInfo.password}
                         onChange={this.handleChanges}
                     ></input>
                     <p>Email: </p>
@@ -69,7 +69,7 @@ class Registration extends React.Component {
                         value={this.state.userInfo.location}
                         onChange={this.handleChanges}
                     ></input>
-                    <button>
+                    <button onClick={this.registration}>
                         {/* {this.props.registration ? (
                           <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
                         ) : (
@@ -91,5 +91,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { registration }
+  { addUser }
 )(Registration);
