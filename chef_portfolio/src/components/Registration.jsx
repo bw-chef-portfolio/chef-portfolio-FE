@@ -50,12 +50,14 @@ class Registration extends React.Component {
                         value={this.state.userInfo.lastName}
                         onChange={this.handleChanges}
                     ></input>
+                    <p>Email: </p>
                     <input
                         type="text"
                         name="email"
                         value={this.state.userInfo.email}
                         onChange={this.handleChanges}
                     ></input>
+                    <p>Location: </p>
                     <input
                         type="text"
                         name="location"
