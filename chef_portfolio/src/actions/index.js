@@ -1,14 +1,16 @@
-import { setUser, getUser, logout } from "../components/withAuth/services";
+import { setUser, logout } from "../components/withAuth/services";
 import axios from 'axios';
 //Login
 export const LOGINFETCH = "LOGINFETCH";
 export const LOGINSUCCESS = "LOGINSUCCESS";
 export const LOGINFAILURE = "LOGINFAILURE";
 
+const URL = "https://chef-portfolio-bw.herokuapp.com/api"
+
 export const login = (username, password) => dispatch => {
     dispatch({ type: LOGINFETCH });
     axios
-      .post(`/login`, {
+      .post(`${URL}/auth/login`, {
         username: username,
         password: password
       })

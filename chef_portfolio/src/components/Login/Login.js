@@ -1,19 +1,18 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import { isLoggedIn } from "../withAuth/services";
 import { withRouter } from "react-router-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
+import { login } from "..//..//actions";
 import styled from "styled-components";
-const LoginForm = styled.div;
-const TextInput = styled.input;
-const Button = styled.button;
+const Form = styled.form``;
+const TextInput = styled.input``;
+const Button = styled.button``;
 
 class Login extends React.Component {
     state = {
             username:'',
             password:''
-        };
+    };
     Login = async () => {
         await this.props.login(this.state.username, this.state.password);
         this.props.history.push("/home");
@@ -24,22 +23,19 @@ class Login extends React.Component {
             [e.target.name]: e.target.value
         });
     };
-    componentDidMount = () => {
-        if(isLoggedIn()) {
-            this.props.history.push("/home");
-        }
-    };
     render () {
         if(isLoggedIn()) {
             this.props.history.push("/home");
         }
         return (
-            <LoginForm>
+            
+            <Form>
                 <h1>Returning User Login</h1>
-                <TextInput type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.textFormHandler}/>
+                 <TextInput type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.textFormHandler}/>
                 <TextInput type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.textFormHandler}/>
-                <Button onClick={this.Login}>Login</Button>
-            </LoginForm>
+                <Button onClick={this.Login}>Login</Button>  
+            </Form>
+            
         );
     }
 }
@@ -54,6 +50,6 @@ const mapStateToProps = state => {
   export default withRouter(
     connect(
       mapStateToProps,
-      { Login }
+      { login }
     )(Login)
   );
