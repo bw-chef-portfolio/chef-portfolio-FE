@@ -1,9 +1,11 @@
+import { setUser, getUser, logout } from "../components/withAuth/services";
+import axios from 'axios';
 //Login
 export const LOGINFETCH = "LOGINFETCH";
 export const LOGINSUCCESS = "LOGINSUCCESS";
 export const LOGINFAILURE = "LOGINFAILURE";
 
-xport const login = (username, password) => dispatch => {
+export const login = (username, password) => dispatch => {
     dispatch({ type: LOGINFETCH });
     axios
       .post(`/login`, {
@@ -24,3 +26,20 @@ xport const login = (username, password) => dispatch => {
         });
       });
   };
+
+//Registartion
+export const REGISTRATION_START = 'REGISTRATION_START';
+export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
+export const REGISTRATION_FAILURE = 'REGISTRATION_FAILURE';
+export const registration = creds => dispatch => {
+  dispatch({ type: REGISTRATION_START });
+  return axios
+    .post('', creds)
+    .then(res => {
+        console.log(res)
+      localStorage.setItem('token', res.data.payload);
+      dispatch({ type: REGISTRATION_SUCCESS });
+      return true;
+    })
+    .catch(err => console.log(err.response));
+};

@@ -1,9 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
+import Registration from './components/Registration';
+import { Route, Link } from 'react-router-dom';
 import './App.css';
 import PrivateRoute from "./components/withAuth/authRouter.js";
-import Login from "./components/LoginComponent/Login";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from "./components/Login/Login.js";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (

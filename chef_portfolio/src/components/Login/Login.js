@@ -5,11 +5,14 @@ import { withRouter } from "react-router-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import styled from "styled-components";
+const LoginForm = styled.div;
+const TextInput = styled.input;
+const Button = styled.button;
 
 class Login extends React.Component {
     state = {
             username:'',
-            password
+            password:''
         };
     Login = async () => {
         await this.props.login(this.state.username, this.state.password);
@@ -51,6 +54,6 @@ const mapStateToProps = state => {
   export default withRouter(
     connect(
       mapStateToProps,
-      { login }
+      { Login }
     )(Login)
   );

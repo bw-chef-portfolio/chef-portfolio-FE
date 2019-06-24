@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
+import { registration } from '../actions'
 
 
 class Registration extends React.Component {
@@ -13,6 +14,10 @@ class Registration extends React.Component {
     }
   };
 
+  componentDidMount() {
+      this.props.registration()
+  }
+
   handleChanges = e => {
     this.setState({
       userInfo: {
@@ -22,14 +27,14 @@ class Registration extends React.Component {
     });
   };
 
-//    login = e => {
-//     e.preventDefault();
-//     this.props.login(this.state.userInfo).then(res => {
-//       if (res) {
-//         this.props.history.push('/protected');
-//       }
-//     });
-//   };
+   registration = e => {
+    e.preventDefault();
+    this.props.registration(this.state.userInfo).then(res => {
+      if (res) {
+        this.props.history.push('/protected');
+      }
+    });
+  };
 
     render() { 
         return ( 
@@ -50,12 +55,14 @@ class Registration extends React.Component {
                         value={this.state.userInfo.lastName}
                         onChange={this.handleChanges}
                     ></input>
+                    <p>Email: </p>
                     <input
                         type="text"
                         name="email"
                         value={this.state.userInfo.email}
                         onChange={this.handleChanges}
                     ></input>
+                    <p>Location: </p>
                     <input
                         type="text"
                         name="location"
@@ -63,7 +70,7 @@ class Registration extends React.Component {
                         onChange={this.handleChanges}
                     ></input>
                     <button>
-                        {/* {this.props.loggingIn ? (
+                        {/* {this.props.registration ? (
                           <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
                         ) : (
                          'Register'
@@ -76,10 +83,11 @@ class Registration extends React.Component {
 }
  
 const mapStateToProps = state => ({
-  
+  error: state.error,
+  registration: state.registration
 });
 
 export default connect(
   mapStateToProps,
-  {  }
+  { registration }
 )(Registration);
