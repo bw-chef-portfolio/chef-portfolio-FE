@@ -57,10 +57,10 @@ export const addUser = addUser => dispatch => {
 export const GETCARD_FETCH = 'GETCARD_FETCH';
 export const GETCARD_SUCCESS = 'GETCARD_SUCCESS';
 export const GETCARD_FAILURE = 'GETCARD_FAILURE';
-export const getCard = (getCard) = (dispatch) => {
+export const getCard = () => (dispatch) => {
   dispatch ({type: GETCARD_FETCH})
   axiosWithAuth()
-  .post('/recipies', getCard)
+  .get('/post/all')
   .then (res => {
     dispatch({type: GETCARD_SUCCESS, payload:res.data});
     return true
