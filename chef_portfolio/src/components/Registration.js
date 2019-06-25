@@ -70,11 +70,6 @@ class Registration extends React.Component {
                         onChange={this.handleChanges}
                     ></input>
                     <button onClick={this.registration}>
-                        {this.props.addUser ? (
-                          <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
-                        ) : (
-                         'Register'
-                        )}
                         Register
                     </button>
                 </form>
