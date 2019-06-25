@@ -1,4 +1,4 @@
-import {CARD_FETCH, CARD_SUCCESS, CARD_FAILURE, GETCARD_FETCH, GETCARD_SUCCESS, GETCARD_FAILURE} from '../actions';
+import { GETCARD_FETCH, GETCARD_SUCCESS, GETCARD_FAILURE} from '../actions';
 
 const initialState = {
     cards: [],

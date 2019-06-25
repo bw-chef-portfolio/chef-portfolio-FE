@@ -14,10 +14,10 @@ const Card = (props) => {
             <Name>{props.card.chef_name}</Name>
             <Location>{props.card.chef_location}</Location>
             <Head>{props.card.recipie_title}</Head>
-            <Photo>{props.card.item_photo}</Photo>            
+            {/* <Photo>{props.card.item_photo}</Photo>             */}
             <Ingredient>{props.card.item_ingredients}</Ingredient>
         </Slide>
     );
 };
 
-export default connect(() => {}) (Card);
+export default Card;

@@ -57,16 +57,15 @@ export const addUser = addUser => dispatch => {
 export const GETCARD_FETCH = 'GETCARD_FETCH';
 export const GETCARD_SUCCESS = 'GETCARD_SUCCESS';
 export const GETCARD_FAILURE = 'GETCARD_FAILURE';
+const URL = 'https://chef-portfolio-bw.herokuapp.com/api'
 export const getCard = () => (dispatch) => {
   dispatch ({type: GETCARD_FETCH})
-  axiosWithAuth()
-  .get('/post/all')
+  axios
+  .get(`${URL}/posts/all`)
   .then (res => {
     dispatch({type: GETCARD_SUCCESS, payload:res.data});
-    return true
   })
   .catch (err => {
     dispatch({type: GETCARD_FAILURE, payload: err})
-    return false
   })
 }
