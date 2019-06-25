@@ -17,6 +17,7 @@ const initialState = {
   error: '',
   fetchingData: false,
   chefData: [],
+  addChefData: []
 };
 
 export const chefPageReducer = (state = initialState, action) => {
@@ -54,6 +55,7 @@ export const chefPageReducer = (state = initialState, action) => {
         ...state,
         error: '',
         fetchingData: false,
+        addChefData: action.payload,
         chefData: action.payload
         
       };

@@ -61,7 +61,7 @@ export const getData = () => dispatch => {
   console.log()
   dispatch({ type: FETCH_DATA_START });
    axiosWithAuth()
-    .get(``)
+    .get(`/posts/all`)
     .then(res => {
         console.log(res)
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data});
@@ -77,7 +77,7 @@ export const ADD_RECIPE_FAILURE = 'ADD_RECIPE_FAILURE';
 export const addRecipe = (newRecipe) => dispatch => {
     dispatch({ type: ADD_RECIPE_START})
     axiosWithAuth()
-        .post('/', newRecipe)
+        .post('/posts', newRecipe)
         .then(res => {
             console.log(res)
             dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data })
@@ -94,7 +94,7 @@ export const DELETE_RECIPE_FAILURE = 'DELETE_RECIPE_FAILURE';
 export const deleteRecipe = (id, deleteRecipe) => dispatch => {
     dispatch({ type: DELETE_RECIPE_START})
     axiosWithAuth()
-        .delete(`/${id}`, deleteRecipe)
+        .delete(`posts/${id}`, deleteRecipe)
         .then(res => {
             console.log(res)
             dispatch({ type: DELETE_RECIPE_SUCCESS, payload: res.data })
@@ -111,7 +111,7 @@ export const EDIT_RECIPE_FAILURE = 'EDIT_RECIPE_FAILURE';
 export const editRecipe = (id, editRecipe) => dispatch => {
     dispatch({ type: EDIT_RECIPE_START})
     axiosWithAuth()
-        .delete(`/${id}`, editRecipe)
+        .put(`posts/${id}`, editRecipe)
         .then(res => {
             console.log(res)
             dispatch({ type: EDIT_RECIPE_SUCCESS, payload: res.data })
