@@ -1,42 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import {getCard} from '../actions'
+import Recipies from './Cards/Recipiecards';
+import styled from 'styled-components';
+
+const Page = styled.div``;
+const Head = styled.h1``;
 
 class RecipePage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-
-         }
+    componentDidMount(){
+        this.props.getCard();
     }
     render() { 
         return ( 
-            <div>
+            <Page>
+                <Head>Featured Recipies</Head>
                 {/* <nav>
                     <Link to="/recipes">Home</Link>
                     <Link to="/login">Login</Link>
                     <Link to="/registration">Register</Link>
                     <Link to="/contact">Contact Us</Link>
                 </nav> */}
+                <Recipies cards={this.props.cards} />
+            </Page>
 
-                <h1>Recipe Page</h1>
-                <div>
-                    <h3>Chicken Soup</h3>
-                    <p>(Image)</p>
-                    <p>Recipe Information</p>
-                </div>
-                <div>
-                    <h3>Chicken Soup</h3>
-                    <p>(Image)</p>
-                    <p>Recipe Information</p>
-                </div>
-                <div>
-                    <h3>Chicken Soup</h3>
-                    <p>(Image)</p>
-                    <p>Recipe Information</p>
-                </div>
-            </div>
+                
          );
     }
 }
+const mapStatetoProps = (state) => {
+    return{
+        cards:state.cardReducer.cards,
+        fetching:state.cardReducer.fetching,
+        error:state.cardReducer.error
+        
+    }
+}
  
-export default RecipePage;
+export default connect(mapStatetoProps,{getCard}) (RecipePage);

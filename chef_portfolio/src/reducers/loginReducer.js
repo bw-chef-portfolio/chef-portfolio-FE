@@ -6,7 +6,7 @@ const initialState = {
     user:""
 };
 
-export default (state = initialState, action) => {
+export const loginReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOGINFETCH:
             return {
