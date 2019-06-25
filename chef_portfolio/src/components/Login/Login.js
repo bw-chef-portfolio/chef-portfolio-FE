@@ -13,10 +13,19 @@ class Login extends React.Component {
             username:'',
             password:''
     };
-    Login = async () => {
-        await this.props.login(this.state.username, this.state.password);
-        this.props.history.push("/home");
-    };
+    // Login = async () => {
+    //     await this.props.login(this.state.username, this.state.password)
+    //     this.props.history.push("/protected");
+    // };
+
+    login = e => {
+    e.preventDefault();
+    this.props.login(this.state.username, this.state.password).then(res => {
+      if (res) {
+        this.props.history.push('/protected');
+      }
+    });
+  };
 
     textFormHandler = e => {
         this.setState({
@@ -24,16 +33,16 @@ class Login extends React.Component {
         });
     };
     render () {
-        if(isLoggedIn()) {
-            this.props.history.push("/home");
-        }
+        // if(isLoggedIn()) {
+        //     this.props.history.push("/protected");
+        // }
         return (
             
             <Form>
                 <h1>Returning User Login</h1>
                  <TextInput type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.textFormHandler}/>
                 <TextInput type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.textFormHandler}/>
-                <Button onClick={this.Login}>Login</Button>  
+                <Button onClick={this.login}>Login</Button>  
             </Form>
             
         );
