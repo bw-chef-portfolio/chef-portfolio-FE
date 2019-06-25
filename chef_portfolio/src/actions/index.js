@@ -52,3 +52,21 @@ export const addUser = addUser => dispatch => {
         console.log(err.response)
         dispatch({type: REGISTRATION_FAILURE, payload: err.response})});
 };
+
+//GetCard
+export const GETCARD_FETCH = 'GETCARD_FETCH';
+export const GETCARD_SUCCESS = 'GETCARD_SUCCESS';
+export const GETCARD_FAILURE = 'GETCARD_FAILURE';
+export const getCard = (getCard) = (dispatch) => {
+  dispatch ({type: GETCARD_FETCH})
+  axiosWithAuth()
+  .post('/recipies', getCard)
+  .then (res => {
+    dispatch({type: GETCARD_SUCCESS, payload:res.data});
+    return true
+  })
+  .catch (err => {
+    dispatch({type: GETCARD_FAILURE, payload: err})
+    return false
+  })
+}

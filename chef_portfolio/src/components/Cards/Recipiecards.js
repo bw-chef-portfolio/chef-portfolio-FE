@@ -6,11 +6,11 @@ const Container = styled.div``;
 
 const Recipies = props => {
     return (
-        <div>
+        <Container>
             {props.cards.map(card =>
                 {return <Card key={card.id} card={card} />;
                 })}
-        </div>
+        </Container>
     );
 };
 
