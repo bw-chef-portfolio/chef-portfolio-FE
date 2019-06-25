@@ -17,5 +17,7 @@ const Card = (props) => {
             <Photo>{props.card.item_photo}</Photo>            
             <Ingredient>{props.card.item_ingredients}</Ingredient>
         </Card>
-    )
-}
+    );
+};
+
+export default Card;
