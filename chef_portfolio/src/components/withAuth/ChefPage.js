@@ -11,7 +11,6 @@ class ChefPage extends React.Component {
             recipeTitle: '',
             itemPhoto: '',
             chefLocation: '',
-            itemIngredients: '',
         }
     };
 
@@ -33,11 +32,23 @@ class ChefPage extends React.Component {
         this.props.addRecipe(this.state.chefInfo)
         this.setState({
             chefInfo: {
-                chefName: '',
+                chef_name: '',
                 recipeTitle: '',
                 itemPhoto: '',
                 chefLocation: '',
-                itemIngredients: '',
+            }
+        })
+    }
+
+    deleteRecipe = e => {
+        e.preventDefault()
+        this.props.deleteRecipe(this.state.chefInfo)
+        this.setState({
+            chefInfo: {
+                chef_name: '',
+                recipeTitle: '',
+                itemPhoto: '',
+                chefLocation: '',
             }
         })
     }
@@ -49,15 +60,14 @@ class ChefPage extends React.Component {
         return (
             <div>
                 <h1>My Recipes</h1>
-               <ChefCard data={this.props.chefData} />
-               {/* {data} */}
+               <ChefCard data={this.props.chefData} deleteRecipe={this.deleteRecipe}/>
                <h2>Add a new recipe!</h2>
                 <form>
                     <p>Chef Name: </p>
                      <input
                         type="text"
-                        name="chefName"
-                        value={this.state.chefInfo.chefName}
+                        name="chef_name"
+                        value={this.state.chefInfo.chef_name}
                         onChange={this.handleChanges}
                     ></input>
                     <p>Recipe Name: </p>
@@ -81,13 +91,7 @@ class ChefPage extends React.Component {
                         value={this.state.chefInfo.chefLocation}
                         onChange={this.handleChanges}
                     ></input>
-                    <p>Ingredients: </p>
-                     <input
-                        type="text"
-                        name="itemIngredients"
-                        value={this.state.chefInfo.itemIngredients}
-                        onChange={this.handleChanges}
-                    ></input>
+                    
                     <button onClick={this.addRecipe}>Submit</button>
                 </form>
             </div>
@@ -100,7 +104,6 @@ const mapStateToProps = state => {
        error: state.chefPageReducer.error,
        fetchingData: state.chefPageReducer.fetchingData,
        chefData: state.chefPageReducer.chefData,
-       addChefData: state.chefPageReducer.addChefData
     }
 }
 export default connect(

@@ -9,7 +9,6 @@ export const LOGINFAILURE = "LOGINFAILURE";
 
 export const login = (username, password) => dispatch => {
     dispatch({ type: LOGINFETCH });
-    console.log("Here");
     return axiosWithAuth()
       .post(`/auth/login`, {
         username: username,
@@ -74,12 +73,12 @@ export const getData = () => dispatch => {
 export const ADD_RECIPE_START = 'ADD_RECIPE_START';
 export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS';
 export const ADD_RECIPE_FAILURE = 'ADD_RECIPE_FAILURE';
-export const addRecipe = (newRecipe) => dispatch => {
+export const addRecipe = (addRecipe) => dispatch => {
     dispatch({ type: ADD_RECIPE_START})
     axiosWithAuth()
-        .post('/posts', newRecipe)
+        .post('/posts', addRecipe)
         .then(res => {
-            console.log(res)
+            console.log('res',res)
             dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data })
         })
         .catch(err => {
@@ -94,7 +93,7 @@ export const DELETE_RECIPE_FAILURE = 'DELETE_RECIPE_FAILURE';
 export const deleteRecipe = (id, deleteRecipe) => dispatch => {
     dispatch({ type: DELETE_RECIPE_START})
     axiosWithAuth()
-        .delete(`posts/${id}`, deleteRecipe)
+        .delete(`posts/:${id}`, deleteRecipe)
         .then(res => {
             console.log(res)
             dispatch({ type: DELETE_RECIPE_SUCCESS, payload: res.data })
