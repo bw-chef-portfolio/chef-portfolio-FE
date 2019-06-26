@@ -74,12 +74,14 @@ export const ADD_RECIPE_START = 'ADD_RECIPE_START';
 export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS';
 export const ADD_RECIPE_FAILURE = 'ADD_RECIPE_FAILURE';
 export const addRecipe = (addRecipe) => dispatch => {
+  console.log('add recipe', addRecipe)
     dispatch({ type: ADD_RECIPE_START})
     axiosWithAuth()
         .post('/posts', addRecipe)
         .then(res => {
             console.log('res',res)
             dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data })
+            
         })
         .catch(err => {
             console.log(err.response)

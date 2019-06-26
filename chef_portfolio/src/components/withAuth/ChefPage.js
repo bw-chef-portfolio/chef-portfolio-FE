@@ -7,10 +7,11 @@ import {getData, addRecipe, deleteRecipe, editRecipe} from '../../actions'
 class ChefPage extends React.Component {
     state = {
         chefInfo: {
-            chefName: '',
-            recipeTitle: '',
-            itemPhoto: '',
-            chefLocation: '',
+            chef_name: '',
+            recipe_title: '',
+            item_photo: '',
+            chef_location: '',
+            item_ingredients: ''
         }
     };
 
@@ -33,9 +34,10 @@ class ChefPage extends React.Component {
         this.setState({
             chefInfo: {
                 chef_name: '',
-                recipeTitle: '',
-                itemPhoto: '',
-                chefLocation: '',
+                recipe_title: '',
+                item_photo: '',
+                chef_location: '',
+                item_ingredients: ''
             }
         })
     }
@@ -46,9 +48,24 @@ class ChefPage extends React.Component {
         this.setState({
             chefInfo: {
                 chef_name: '',
-                recipeTitle: '',
-                itemPhoto: '',
-                chefLocation: '',
+                recipe_title: '',
+                item_photo: '',
+                chef_location: '',
+                item_ingredients: ''
+            }
+        })
+    }
+
+    editRecipe = e => {
+        e.preventDefault()
+        this.props.editRecipe(this.state.chefInfo)
+        this.setState({
+            chefInfo: {
+                chef_name: '',
+                recipe_title: '',
+                item_photo: '',
+                chef_location: '',
+                item_ingredients: ''
             }
         })
     }
@@ -60,7 +77,7 @@ class ChefPage extends React.Component {
         return (
             <div>
                 <h1>My Recipes</h1>
-               <ChefCard data={this.props.chefData} deleteRecipe={this.deleteRecipe}/>
+               <ChefCard data={this.props.chefData} deleteRecipe={this.deleteRecipe} editRecipe={this.editRecipe}/>
                <h2>Add a new recipe!</h2>
                 <form>
                     <p>Chef Name: </p>
@@ -73,22 +90,29 @@ class ChefPage extends React.Component {
                     <p>Recipe Name: </p>
                      <input
                         type="text"
-                        name="recipeTitle"
-                        value={this.state.chefInfo.recipeTitle}
+                        name="recipe_title"
+                        value={this.state.chefInfo.recipe_title}
                         onChange={this.handleChanges}
                     ></input>
                     <p>Upload a photo</p>
                      <input
                         type="text"
-                        name="itemPhoto"
-                        value={this.state.chefInfo.itemPhoto}
+                        name="item_photo"
+                        value={this.state.chefInfo.item_photo}
                         onChange={this.handleChanges}
                     ></input>
                     <p>Location: </p>
                      <input
                         type="text"
-                        name="chefLocation"
-                        value={this.state.chefInfo.chefLocation}
+                        name="chef_location"
+                        value={this.state.chefInfo.chef_location}
+                        onChange={this.handleChanges}
+                    ></input>
+                    <p>Ingredients: </p>
+                     <input
+                        type="text"
+                        name="item_ingredients"
+                        value={this.state.chefInfo.item_ingredients}
                         onChange={this.handleChanges}
                     ></input>
                     

@@ -7,7 +7,7 @@ const ChefCard = (props) => {
         <div>
              {props.data.map(data => {
                     return (
-                        <Chef key={data.id} data={data} deleteRecipe={props.deleteRecipe}/>
+                        <Chef key={data.id} data={data} deleteRecipe={props.deleteRecipe} editRecipe={props.editRecipe}/>
                     )
                 })}
         </div>
