@@ -34,6 +34,13 @@
 
 
 img {
-  height: 500px;
+  height: 400px;
   width: 500px;
 }
+
+/* .modal {
+  color: blue;
+  width: 50%;
+  margin: 0 auto;
+  z-index: 100;
+} */

@@ -19,6 +19,13 @@ class ChefPage extends React.Component {
        this.props.getData()
    }
 
+   componentDidUpdate(prevProps, prevState) {
+       if(prevProps.chefData.length !== this.props.chefData.length) {
+            this.props.getData()
+       }
+   }
+   
+
     handleChanges = e => {
     this.setState({
       chefInfo: {
@@ -73,11 +80,14 @@ class ChefPage extends React.Component {
     
 
     render() {
-
+        console.log("help",this.props.chefData)
+        if (!this.props.chefData) {
+            return <h3>Loading</h3>
+        } else {
         return (
             <div>
                 <h1>My Recipes</h1>
-               <ChefCard data={this.props.chefData} deleteRecipe={this.deleteRecipe} editRecipe={this.editRecipe}/>
+               <ChefCard data={this.props.chefData} />
                <h2>Add a new recipe!</h2>
                 <form>
                     <p>Chef Name: </p>
@@ -122,12 +132,14 @@ class ChefPage extends React.Component {
         )
     }
 }
+}
 const mapStateToProps = state => {
     console.log("state", state)
     return {
        error: state.chefPageReducer.error,
        fetchingData: state.chefPageReducer.fetchingData,
        chefData: state.chefPageReducer.chefData,
+       
     }
 }
 export default connect(

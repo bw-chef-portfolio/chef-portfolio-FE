@@ -1,9 +1,12 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { connect } from 'react-redux';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
+import {deleteRecipe, editRecipe} from '../actions'
 
 class Chef extends React.Component {
     state = {
         modal: false,
+
         chefInfo: {
             chef_name: '',
             recipe_title: '',
@@ -19,12 +22,23 @@ class Chef extends React.Component {
         }))
     }
 
+    handleChanges = e => {
+        this.setState({
+        chefInfo: {
+            ...this.state.chefInfo,
+            [e.target.name]: e.target.value
+        }
+    });
+}
+
     render() {
+        console.log("cheffry props",this.props.data.chef_name)
     return ( 
         <div>
             <div>
+              
             <p>Chef Name: </p>
-            <p>{this.props.data.couple_name}</p>
+            <p>{this.props.data.chef_name}</p>
             <p>Recipe Name: </p>
             <p>{this.props.data.recipe_title}</p>
             <img src={this.props.data.item_photo} alt="pictures"></img>
@@ -35,8 +49,9 @@ class Chef extends React.Component {
             </div>
 
             <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}Edit</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                
+        <Button color="danger" onClick={this.toggle}>Edit</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} >
           <ModalHeader toggle={this.toggle}>Edit Recipe</ModalHeader>
           <ModalBody>
             <form>
@@ -46,6 +61,7 @@ class Chef extends React.Component {
                         name="chef_name"
                         value={this.state.chefInfo.chef_name}
                         onChange={this.handleChanges}
+                        
                     ></input>
                     <p>Recipe Name: </p>
                      <input
@@ -88,5 +104,17 @@ class Chef extends React.Component {
 }
 }
  
-export default Chef;
+const mapStateToProps = state => {
+    console.log("state", state)
+    return {
+       error: state.chefPageReducer.error,
+       chefData: state.chefPageReducer.chefData,
+    }
+}
+export default connect(
+    mapStateToProps,
+    {
+        deleteRecipe, editRecipe
+    }
+)(Chef)
 
