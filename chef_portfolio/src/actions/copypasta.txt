@@ -1,0 +1,34 @@
+  DELETE_RECIPE_START,
+  DELETE_RECIPE_SUCCESS,
+  DELETE_RECIPE_FAILURE,
+  EDIT_RECIPE_START,
+  EDIT_RECIPE_SUCCESS,
+  EDIT_RECIPE_FAILURE,
+    FETCH_DATA_START,
+  FETCH_DATA_SUCCESS,
+  FETCH_DATA_FAILURE,
+  deleteRecipe, editRecipe,
+
+        case LOAD_USERDATA:
+        return {...state, fetching:true};
+      case LOAD_USERDATA_SUCCESS:
+        return {...state, cards:action.payload, fetching:false};
+      case LOAD_USERDATA_FAILURE:
+        return {...state, error:action.payload, fetching:false};
+
+
+export const LOAD_USERDATA = 'LOAD_USERDATA';
+export const LOAD_USERDATA_SUCCESS = 'LOAD_USERDATA_SUCCESS';
+export const LOAD_USERDATA_FAILURE = 'LOAD_USERDATA_FAILURE';
+
+export const loadRecipies = () => (dispatch) => {
+    dispatch({type:LOAD_USERDATA})
+    axios
+    .get(`${URL}/posts`)
+    .then(res => {
+      dispatch({type:LOAD_USERDATA_SUCCESS, payload:res.data })
+    })
+    .catch(err => {
+      dispatch({type:LOAD_USERDATA_FAILURE, payload:err.response })
+    })
+}
