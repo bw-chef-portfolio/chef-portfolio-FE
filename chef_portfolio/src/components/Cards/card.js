@@ -6,7 +6,6 @@ const Head = styled.h1``;
 const Ingredient = styled.li``;
 const Name = styled.h1``;
 const Location = styled.h2``;
-const Photo = styled.img``;
 
 const Card = (props) => {
     return(
@@ -14,7 +13,7 @@ const Card = (props) => {
             <Name>{props.card.chef_name}</Name>
             <Location>{props.card.chef_location}</Location>
             <Head>{props.card.recipie_title}</Head>
-            {/* <Photo>{props.card.item_photo}</Photo>             */}
+            <img src={props.card.item_photo} alt="pictures of food" className="Image"/>           
             <Ingredient>{props.card.item_ingredients}</Ingredient>
         </Slide>
     );

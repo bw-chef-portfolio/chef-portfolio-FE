@@ -92,8 +92,9 @@ export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS';
 export const ADD_RECIPE_FAILURE = 'ADD_RECIPE_FAILURE';
 export const addRecipe = (newRecipe) => dispatch => {
     dispatch({ type: ADD_RECIPE_START})
+    console.log(newRecipe);
     axiosWithAuth()
-        .post('/', newRecipe)
+        .post('/posts', newRecipe)
         .then(res => {
             console.log(res)
             dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data })
@@ -136,4 +137,20 @@ export const editRecipe = (id, editRecipe) => dispatch => {
             console.log(err.response)
             dispatch({type: EDIT_RECIPE_FAILURE, payload: err.response})
         })
+}
+
+export const LOAD_USERDATA = 'LOAD_USERDATA';
+export const LOAD_USERDATA_SUCCESS = 'LOAD_USERDATA_SUCCESS';
+export const LOAD_USERDATA_FAILURE = 'LOAD_USERDATA_FAILURE';
+
+export const loadRecipies = () => (dispatch) => {
+    dispatch({type:LOAD_USERDATA})
+    axios
+    .get(`${URL}/posts`)
+    .then(res => {
+      dispatch({type:LOAD_USERDATA_SUCCESS, payload:res.data })
+    })
+    .catch(err => {
+      dispatch({type:LOAD_USERDATA_FAILURE, payload:err.response })
+    })
 }

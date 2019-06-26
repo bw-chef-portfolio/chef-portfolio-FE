@@ -16,7 +16,7 @@ import {
 const initialState = {
   error: '',
   fetchingData: false,
-  chefData: [],
+  chefInfo: [],
 };
 
 export const chefPageReducer = (state = initialState, action) => {
