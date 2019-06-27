@@ -2,6 +2,11 @@ import React from 'react';
 import Chef from './Chef'
 
 const ChefCard = (props) => {
+    console.log("chef data props", props.data)
+    
+    if (!props.data) {
+        return <h1>Loading</h1>
+    } else {
     return ( 
         <div>
              {props.data.map(data => {
@@ -11,6 +16,7 @@ const ChefCard = (props) => {
                 })}
         </div>
      );
+}
 }
  
 export default ChefCard;

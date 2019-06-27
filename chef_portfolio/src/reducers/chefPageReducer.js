@@ -26,8 +26,8 @@ export const chefPageReducer = (state = initialState, action) => {
       return {
         ...state,
         error: '',
-        fetchingData: true
-        
+        fetchingData: true,
+        addRecipe: false,
       };
     case FETCH_DATA_SUCCESS:
       return {
@@ -35,42 +35,42 @@ export const chefPageReducer = (state = initialState, action) => {
         error: '',
         fetchingData: false,
         chefData: action.payload
-        
+
       };
     case FETCH_DATA_FAILURE:
-        return {
-            ...state,
-            error: action.payload,
-            fetchingData: false
-        }
-     case ADD_RECIPE_START:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingData: false
+      }
+    case ADD_RECIPE_START:
       return {
         ...state,
         error: '',
-        fetchingData: true
-        
+        fetchingData: true,
+        addRecipe: true
       };
     case ADD_RECIPE_SUCCESS:
       return {
         ...state,
         error: '',
         fetchingData: false,
-        addChefData: action.payload,
-        chefData: action.payload
-        
+        chefData: [ ...state.chefData, action.payload ],
+        addRecipe: false
+
       };
     case ADD_RECIPE_FAILURE:
-        return {
-            ...state,
-            error: action.payload,
-            fetchingData: false
-        }
-     case DELETE_RECIPE_START:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingData: false
+      }
+    case DELETE_RECIPE_START:
       return {
         ...state,
         error: '',
         fetchingData: true
-        
+
       };
     case DELETE_RECIPE_SUCCESS:
       return {
@@ -78,20 +78,20 @@ export const chefPageReducer = (state = initialState, action) => {
         error: '',
         fetchingData: false,
         chefData: action.payload
-        
+
       };
     case DELETE_RECIPE_FAILURE:
-        return {
-            ...state,
-            error: action.payload,
-            fetchingData: false
-        }
+      return {
+        ...state,
+        error: action.payload,
+        fetchingData: false
+      }
     case EDIT_RECIPE_START:
       return {
         ...state,
         error: '',
         fetchingData: true
-        
+
       };
     case EDIT_RECIPE_SUCCESS:
       return {
@@ -99,17 +99,17 @@ export const chefPageReducer = (state = initialState, action) => {
         error: '',
         fetchingData: false,
         chefData: action.payload
-        
+
       };
     case EDIT_RECIPE_FAILURE:
-        return {
-            ...state,
-            error: action.payload,
-            fetchingData: false
-        }
-    
+      return {
+        ...state,
+        error: action.payload,
+        fetchingData: false
+      }
+
     default:
-        return state 
+      return state
   }
 
 }
