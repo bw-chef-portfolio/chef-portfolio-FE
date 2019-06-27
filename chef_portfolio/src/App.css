@@ -65,14 +65,14 @@ button {
 
 .container-nav {
   /* position: relative; */
-  height: 100px;
+  height: 85px;
   color: seashell;
   background-color: #f73b3b;
 }
 
 .nav-bar {
   display: flex;
-  height: 100px;
+  height: 85px;
   /* border: 2px outset #f96262; */
 }
 
