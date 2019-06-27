@@ -61,10 +61,11 @@ class ChefPage extends React.Component {
             return <h3>Loading</h3>
         } else {
         return (
-            <div>
+            <div className="chef-page-title">
                 <h1>My Recipes</h1>
                <ChefCard data={this.props.chefData} />
                <h2>Add a new recipe!</h2>
+               <div className="chef-form">
                 <form>
                     <p>Chef Name: </p>
                      <input
@@ -104,6 +105,7 @@ class ChefPage extends React.Component {
                     
                     <button onClick={this.addRecipe}>Submit</button>
                 </form>
+                </div>
             </div>
         )
     }

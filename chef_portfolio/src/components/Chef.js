@@ -65,8 +65,7 @@ class Chef extends React.Component {
                     <p>Chef Location: {this.props.data.chef_location}</p>
                     <p>Recipe Ingredients: {this.props.data.item_ingredients}</p>
                     <button onClick={this.toggle}>Edit</button>
-                    <button onClick={() => this.props.deleteRecipe(this.props.data.id)}>Delete</button>
-                    
+                    <button onClick={() => this.props.deleteRecipe(this.props.data.id)}>Delete</button>  
                 </div>
 
             <div>
