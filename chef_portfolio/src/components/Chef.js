@@ -70,9 +70,9 @@ class Chef extends React.Component {
 
             <div>
                 
-        {/* <Button color="danger" onClick={this.toggle} >Edit </Button> */}
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} >
-          <ModalHeader toggle={this.toggle} >Edit Recipe</ModalHeader>
+        
+        <Modal isOpen={this.state.modal} toggle={this.toggle}  >
+          <h2 toggle={this.toggle} className="modal-title">Edit Recipe</h2>
           <ModalBody>
             <form>
                 <p>Chef Name: </p>

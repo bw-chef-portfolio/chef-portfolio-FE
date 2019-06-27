@@ -101,6 +101,7 @@ class ChefPage extends React.Component {
                         name="item_ingredients"
                         value={this.state.chefInfo.item_ingredients}
                         onChange={this.handleChanges}
+                        
                     ></input>
                     
                     <button onClick={this.addRecipe}>Submit</button>

@@ -13,7 +13,7 @@ class NavBar extends React.Component {
             <div className="container-nav">
                 <nav className="nav-bar">
                     <div className="nav-logo">
-                        <Link>Chef Portfolio</Link>
+                        <Link to="">Chef Portfolio</Link>
                         <img href="#" alt="stuff"></img>
                     </div>
                 <div className="nav-links">
