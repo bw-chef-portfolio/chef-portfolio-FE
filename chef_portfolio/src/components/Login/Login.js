@@ -50,7 +50,7 @@ class Login extends React.Component {
 }
 const mapStateToProps = state => {
     return {
-      isloadingLOGIN: state.isloadingLOGIN,
+      isLoadingLOGIN: state.isLoadingLOGIN,
       successLOGIN: state.successLOGIN,
       user: state.user
     };

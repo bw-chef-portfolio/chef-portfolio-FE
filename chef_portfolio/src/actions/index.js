@@ -122,3 +122,19 @@ export const editRecipe = (id, editRecipe) => dispatch => {
             dispatch({type: EDIT_RECIPE_FAILURE, payload: err.response})
         })
 }
+//GetCard
+export const GETCARD_FETCH = 'GETCARD_FETCH';
+export const GETCARD_SUCCESS = 'GETCARD_SUCCESS';
+export const GETCARD_FAILURE = 'GETCARD_FAILURE';
+const URL = 'https://chef-portfolio-bw.herokuapp.com/api'
+export const getCard = () => (dispatch) => {
+  dispatch ({type: GETCARD_FETCH})
+  axios
+  .get(`${URL}/posts/all`)
+  .then (res => {
+    dispatch({type: GETCARD_SUCCESS, payload:res.data});
+  })
+  .catch (err => {
+    dispatch({type: GETCARD_FAILURE, payload: err})
+  })
+}

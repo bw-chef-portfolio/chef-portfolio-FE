@@ -49,33 +49,9 @@ class ChefPage extends React.Component {
         })
     }
 
-    deleteRecipe = e => {
-        e.preventDefault()
-        this.props.deleteRecipe(this.state.chefInfo)
-        this.setState({
-            chefInfo: {
-                chef_name: '',
-                recipe_title: '',
-                item_photo: '',
-                chef_location: '',
-                item_ingredients: ''
-            }
-        })
-    }
+    
 
-    editRecipe = e => {
-        e.preventDefault()
-        this.props.editRecipe(this.state.chefInfo)
-        this.setState({
-            chefInfo: {
-                chef_name: '',
-                recipe_title: '',
-                item_photo: '',
-                chef_location: '',
-                item_ingredients: ''
-            }
-        })
-    }
+    
 
     
 

@@ -12,7 +12,8 @@ class Chef extends React.Component {
             recipe_title: '',
             item_photo: '',
             chef_location: '',
-            item_ingredients: ''
+            item_ingredients: '',
+            id: '',
         }
     }
 
@@ -30,9 +31,36 @@ class Chef extends React.Component {
         }
     });
 }
+    deleteRecipe = e => {
+        e.preventDefault()
+        this.props.deleteRecipe(this.state.chefInfo)
+        this.setState({
+            chefInfo: {
+                chef_name: '',
+                recipe_title: '',
+                item_photo: '',
+                chef_location: '',
+                item_ingredients: ''
+            }
+        })
+    }
+
+    editRecipe = e => {
+        e.preventDefault()
+        this.props.editRecipe(this.state.chefInfo)
+        this.setState({
+            chefInfo: {
+                chef_name: '',
+                recipe_title: '',
+                item_photo: '',
+                chef_location: '',
+                item_ingredients: ''
+            }
+        })
+    }
 
     render() {
-        console.log("cheffry props",this.props.data.chef_name)
+        console.log("cheffry props",this.props)
     return ( 
         <div>
             <div>
@@ -44,8 +72,8 @@ class Chef extends React.Component {
             <img src={this.props.data.item_photo} alt="pictures"></img>
             <p>Chef Location: </p>
             <p>{this.props.data.chef_location}</p>
-            <button onClick={this.props.deleteRecipe}>Delete</button>
-            {/* <button onClick={this.props.editRecipe}>Edit</button> */}
+            <button onClick={this.deleteRecipe}>Delete</button>
+            {/* <button onClick={this.editRecipe}>Edit</button> */}
             </div>
 
             <div>

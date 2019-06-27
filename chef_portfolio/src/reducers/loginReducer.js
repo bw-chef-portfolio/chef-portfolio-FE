@@ -11,20 +11,20 @@ export default (state = initialState, action) => {
         case LOGINFETCH:
             return {
               ...state,
-              isloadingLOGIN: true,
+              isLoadingLOGIN: true,
               successLOGIN: false
             };
           case LOGINSUCCESS:
             return {
               ...state,
-              isloadingLOGIN: false,
+              isLoadingLOGIN: false,
               successLOGIN: true,
               user: action.payload
             };
           case LOGINFAILURE:
             return {
               ...state,
-              isloadingLOGIN: false,
+              isLoadingLOGIN: false,
               successLOGIN: false,
               user: ""
             };

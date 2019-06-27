@@ -7,7 +7,6 @@ import { addUser } from '../actions'
 class Registration extends React.Component {
       state = {
         userInfo: {
-            
             username: '',
             password: '',
             email: '',
