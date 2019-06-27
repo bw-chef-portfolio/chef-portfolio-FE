@@ -112,7 +112,7 @@ export const EDIT_RECIPE_FAILURE = 'EDIT_RECIPE_FAILURE';
 export const editRecipe = (id, editRecipe) => dispatch => {
     dispatch({ type: EDIT_RECIPE_START})
     axiosWithAuth()
-        .put(`posts/${id}`, editRecipe)
+        .put(`/posts/${id}`, editRecipe)
         .then(res => {
             console.log(res)
             dispatch({ type: EDIT_RECIPE_SUCCESS, payload: res.data })
