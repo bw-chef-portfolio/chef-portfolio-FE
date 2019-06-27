@@ -8,7 +8,7 @@ const ChefCard = (props) => {
         return <h1>Loading</h1>
     } else {
     return ( 
-        <div>
+        <div className="chef-page">
              {props.data.map(data => {
                     return (
                         <Chef key={data.id} data={data} />

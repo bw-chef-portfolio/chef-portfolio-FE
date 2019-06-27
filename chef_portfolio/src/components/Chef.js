@@ -1,20 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
-import {deleteRecipe, editRecipe} from '../actions'
+import {deleteRecipe, editRecipe} from '../actions';
+import styled from 'styled-components'
 
 class Chef extends React.Component {
-    state = {
-        modal: false,
-
-        chefInfo: {
-            chef_name: '',
-            recipe_title: '',
-            item_photo: '',
-            chef_location: '',
-            item_ingredients: '',
-            id: '',
-        }
+    constructor(props) {
+        super(props);
+        this.state = { 
+            modal: false,
+            chefInfo: {
+                chef_name: '',
+                recipe_title: '',
+                item_photo: '',
+                chef_location: '',
+                item_ingredients: '',
+                
+            },
+            activeRecipe: [],
+            newChefInfo: this.props.activeRecipe
+         }
     }
 
     toggle = () => {
@@ -23,64 +28,52 @@ class Chef extends React.Component {
         }))
     }
 
-    handleChanges = e => {
+     handleChanges = e => {
         this.setState({
-        chefInfo: {
-            ...this.state.chefInfo,
-            [e.target.name]: e.target.value
-        }
-    });
-}
-    deleteRecipe = e => {
-        e.preventDefault()
-        this.props.deleteRecipe(this.state.chefInfo)
-        this.setState({
-            chefInfo: {
-                chef_name: '',
-                recipe_title: '',
-                item_photo: '',
-                chef_location: '',
-                item_ingredients: ''
+            newChefInfo: {
+                ...this.activeRecipe,
+                [e.target.name]: e.target.value
             }
         })
     }
+
 
     editRecipe = e => {
         e.preventDefault()
-        this.props.editRecipe(this.state.chefInfo)
+        this.props.editRecipe(this.state.newChefInfo)
         this.setState({
-            chefInfo: {
-                chef_name: '',
-                recipe_title: '',
-                item_photo: '',
-                chef_location: '',
-                item_ingredients: ''
-            }
+
         })
     }
 
-    render() {
-        console.log("cheffry props",this.props)
-    return ( 
-        <div>
-            <div>
-              
-            <p>Chef Name: </p>
-            <p>{this.props.data.chef_name}</p>
-            <p>Recipe Name: </p>
-            <p>{this.props.data.recipe_title}</p>
-            <img src={this.props.data.item_photo} alt="pictures"></img>
-            <p>Chef Location: </p>
-            <p>{this.props.data.chef_location}</p>
-            <button onClick={this.deleteRecipe}>Delete</button>
-            {/* <button onClick={this.editRecipe}>Edit</button> */}
-            </div>
+    setUpdateForm = chefInfo => {
+        this.setState({ activeRecipe: chefInfo})
+    }
+
+    
+
+
+
+    render() { 
+        console.log('active recipe', this.state.activeRecipe)
+        return ( 
+            <div className="chef-collection">
+                <div className="chef-card">
+                    <img src={this.props.data.item_photo} alt="pictures"></img>
+                    <p>Chef Name: {this.props.data.chef_name}</p>
+                    <p>Recipe Name: {this.props.data.recipe_title}</p>
+                    <p>Chef Location: {this.props.data.chef_location}</p>
+                    <p>Recipe Ingredients: {this.props.data.item_ingredients}</p>
+                    <button onClick={this.toggle}>Edit</button>
+                    <button onClick={() => this.props.deleteRecipe(this.props.data.id)}>Delete</button>
+                    
+                </div>
 
             <div>
                 
-        <Button color="danger" onClick={this.toggle}>Edit</Button>
+        {/* <Button color="danger" onClick={this.toggle} >Edit </Button> */}
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} >
-          <ModalHeader toggle={this.toggle}>Edit Recipe</ModalHeader>
+          <ModalHeader toggle={this.toggle} >Edit Recipe</ModalHeader>
           <ModalBody>
             <form>
                 <p>Chef Name: </p>
@@ -128,10 +121,12 @@ class Chef extends React.Component {
         </Modal>
       </div>
         </div>
-     );
-}
+         );
+    }
 }
  
+
+
 const mapStateToProps = state => {
     console.log("state", state)
     return {
@@ -139,10 +134,10 @@ const mapStateToProps = state => {
        chefData: state.chefPageReducer.chefData,
     }
 }
+
 export default connect(
     mapStateToProps,
     {
         deleteRecipe, editRecipe
     }
 )(Chef)
-

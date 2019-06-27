@@ -37,31 +37,35 @@ class Registration extends React.Component {
 
     render() { 
         return ( 
-            <div>
+            <div className="registration">
                 <h1>Registration</h1>
-                <form>
-                    <p>Username: </p>
+                <div className="register-form">
+                <form className="form-1">
+                    <p>Username </p>
                     <input
                         type="text"
                         name="username"
                         value={this.state.userInfo.username}
                         onChange={this.handleChanges}
                     ></input>
-                    <p>Password: </p>
+                    <p>Password </p>
                     <input
                         type="text"
                         name="password"
                         value={this.state.userInfo.password}
                         onChange={this.handleChanges}
                     ></input>
-                    <p>Email: </p>
+                  
+                
+                
+                    <p>Email </p>
                     <input
                         type="text"
                         name="email"
                         value={this.state.userInfo.email}
                         onChange={this.handleChanges}
                     ></input>
-                    <p>Location: </p>
+                    <p>Location </p>
                     <input
                         type="text"
                         name="location"
@@ -72,6 +76,7 @@ class Registration extends React.Component {
                         Register
                     </button>
                 </form>
+                </div>
             </div>
          );
     }

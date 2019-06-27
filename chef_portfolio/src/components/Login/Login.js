@@ -13,10 +13,6 @@ class Login extends React.Component {
             username:'',
             password:''
     };
-    // Login = async () => {
-    //     await this.props.login(this.state.username, this.state.password)
-    //     this.props.history.push("/protected");
-    // };
 
     login = e => {
     e.preventDefault();
@@ -33,9 +29,7 @@ class Login extends React.Component {
         });
     };
     render () {
-        // if(isLoggedIn()) {
-        //     this.props.history.push("/protected");
-        // }
+       
         return (
             
             <Form>
