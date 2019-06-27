@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
-<<<<<<< HEAD
 import {getData, deleteRecipe, editRecipe} from '../actions';
 import styled from 'styled-components'
 
@@ -21,29 +20,6 @@ constructor(props){
         this.handleChanges = this.handleChanges.bind(this);
     
     }
-=======
-import {deleteRecipe, editRecipe} from '../actions';
-import styled from 'styled-components'
-
-class Chef extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            modal: false,
-            chefInfo: {
-                chef_name: '',
-                recipe_title: '',
-                item_photo: '',
-                chef_location: '',
-                item_ingredients: '',
-                
-            },
-            activeRecipe: [],
-            newChefInfo: this.props.activeRecipe
-         }
-    }
-
->>>>>>> 687cffe55116af039d0fca9340f7f00c8aca7ec0
     toggle = () => {
         this.setState(prevState => ({
             modal: !prevState.modal
@@ -148,7 +124,7 @@ class Chef extends React.Component {
          );
     }
 }
-}
+
  
 const mapStateToProps = state => {
     console.log("state", state)
