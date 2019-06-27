@@ -93,11 +93,13 @@ export const chefPageReducer = (state = initialState, action) => {
         
       };
     case EDIT_RECIPE_SUCCESS:
+      const newChefData = state.chefData.filter(Recipie => Recipie.id !== action.payload.id)
       return {
         ...state,
         error: '',
         fetchingData: false,
-        chefData: action.payload
+        chefData: [...newChefData, action.payload],
+        editRecipie:false
         
       };
     case EDIT_RECIPE_FAILURE:

@@ -118,7 +118,7 @@ export const editRecipe = (id, editRecipe) => dispatch => {
             dispatch({ type: EDIT_RECIPE_SUCCESS, payload: res.data })
         })
         .catch(err => {
-            console.log(err.response)
+            console.log(err)
             dispatch({type: EDIT_RECIPE_FAILURE, payload: err.response})
         })
 }

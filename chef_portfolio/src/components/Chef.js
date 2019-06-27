@@ -1,51 +1,55 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
-import {deleteRecipe, editRecipe} from '../actions';
+import {getData, deleteRecipe, editRecipe} from '../actions';
 import styled from 'styled-components'
 
 class Chef extends React.Component {
-    state = {
-        modal: false,
+constructor(props){
+    super(props);
+    this.state = {
 
-        chefInfo: {
-            chef_name: '',
-            recipe_title: '',
-            item_photo: '',
-            chef_location: '',
-            item_ingredients: '',
-            activeRecipe: []
+            id: this.props.data.id,
+            chef_name: this.props.data.chef_name,
+            recipe_title: this.props.data.recipe_title,
+            item_photo: this.props.data.item_photo,
+            chef_location: this.props.data.chef_location,
+            item_ingredients: this.props.data.item_ingredients
         }
-    }
 
+        this.handleChanges = this.handleChanges.bind(this);
+    
+    }
     toggle = () => {
         this.setState(prevState => ({
             modal: !prevState.modal
         }))
     }
 
+    componentDidMount(){
+        this.props.getData()
+    }
+
     handleChanges = e => {
         this.setState({
-        chefInfo: {
             ...this.state.chefInfo,
-            [e.target.name]: e.target.value
-        }
+            [e.target.name]: e.target.value        
     });
-
+}
     editRecipe = e => {
         e.preventDefault()
-        this.props.editRecipe(this.state.chefInfo)
+        console.log(this.state)
+        this.props.editRecipe(this.props.data.id, this.state)
         this.setState({
-            chefInfo: {
                 chef_name: '',
                 recipe_title: '',
                 item_photo: '',
                 chef_location: '',
                 item_ingredients: ''
-            }
+            
         })
     }
-}
+
 
     render() {
         console.log("cheffry props",this.props)
@@ -60,6 +64,7 @@ class Chef extends React.Component {
             <img src={this.props.data.item_photo} alt="pictures"></img>
             <p>Chef Location: </p>
             <p>{this.props.data.chef_location}</p>
+            <p>{this.props.data.item_ingredients}</p>
             <button onClick={() => this.props.deleteRecipe(this.props.data.id)}>Delete</button>
             {/* <button onClick={this.editRecipe}>Edit</button> */}
             </div>
@@ -75,7 +80,7 @@ class Chef extends React.Component {
                      <input
                         type="text"
                         name="chef_name"
-                        value={this.state.chefInfo.chef_name}
+                        value={this.state.chef_name}
                         onChange={this.handleChanges}
                         
                     ></input>
@@ -83,34 +88,34 @@ class Chef extends React.Component {
                      <input
                         type="text"
                         name="recipe_title"
-                        value={this.state.chefInfo.recipe_title}
+                        value={this.state.recipe_title}
                         onChange={this.handleChanges}
                     ></input>
                     <p>Upload a photo</p>
                      <input
                         type="text"
                         name="item_photo"
-                        value={this.state.chefInfo.item_photo}
+                        value={this.state.item_photo}
                         onChange={this.handleChanges}
                     ></input>
                     <p>Location: </p>
                      <input
                         type="text"
                         name="chef_location"
-                        value={this.state.chefInfo.chef_location}
+                        value={this.state.chef_location}
                         onChange={this.handleChanges}
                     ></input>
                     <p>Ingredients: </p>
                      <input
                         type="text"
                         name="item_ingredients"
-                        value={this.state.chefInfo.item_ingredients}
+                        value={this.state.item_ingredients}
                         onChange={this.handleChanges}
                     ></input>
             </form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Edit</Button>{' '}
+            <Button color="primary" onClick={this.editRecipe}>Edit</Button>{' '}
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
@@ -124,13 +129,14 @@ const mapStateToProps = state => {
     console.log("state", state)
     return {
        error: state.chefPageReducer.error,
+       fetchingData: state.chefPageReducer.fetchingData,
        chefData: state.chefPageReducer.chefData,
     }
 }
 export default connect(
     mapStateToProps,
     {
-        deleteRecipe, editRecipe
+        getData, deleteRecipe, editRecipe
     }
 )(Chef)
 
