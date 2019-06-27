@@ -5,11 +5,10 @@ export const LOGINFETCH = "LOGINFETCH";
 export const LOGINSUCCESS = "LOGINSUCCESS";
 export const LOGINFAILURE = "LOGINFAILURE";
 
- //const URL = "https://chef-portfolio-bw.herokuapp.com/api"
+// const URL = "https://chef-portfolio-bw.herokuapp.com/api"
 
 export const login = (username, password) => dispatch => {
     dispatch({ type: LOGINFETCH });
-    console.log("Here");
     return axiosWithAuth()
       .post(`/auth/login`, {
         username: username,
@@ -53,22 +52,6 @@ export const addUser = addUser => dispatch => {
         dispatch({type: REGISTRATION_FAILURE, payload: err.response})});
 };
 
-//GetCard
-export const GETCARD_FETCH = 'GETCARD_FETCH';
-export const GETCARD_SUCCESS = 'GETCARD_SUCCESS';
-export const GETCARD_FAILURE = 'GETCARD_FAILURE';
-const URL = 'https://chef-portfolio-bw.herokuapp.com/api'
-export const getCard = () => (dispatch) => {
-  dispatch ({type: GETCARD_FETCH})
-  axios
-  .get(`${URL}/posts/all`)
-  .then (res => {
-    dispatch({type: GETCARD_SUCCESS, payload:res.data});
-  })
-  .catch (err => {
-    dispatch({type: GETCARD_FAILURE, payload: err})
-  })
-}
 export const FETCH_DATA_START = 'FETCH_DATA_START';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
@@ -77,7 +60,7 @@ export const getData = () => dispatch => {
   console.log()
   dispatch({ type: FETCH_DATA_START });
    axiosWithAuth()
-    .get(``)
+    .get(`/posts/all`)
     .then(res => {
         console.log(res)
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data});
@@ -90,14 +73,15 @@ export const getData = () => dispatch => {
 export const ADD_RECIPE_START = 'ADD_RECIPE_START';
 export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS';
 export const ADD_RECIPE_FAILURE = 'ADD_RECIPE_FAILURE';
-export const addRecipe = (newRecipe) => dispatch => {
+export const addRecipe = (addRecipe) => dispatch => {
+  console.log('add recipe', addRecipe)
     dispatch({ type: ADD_RECIPE_START})
-    console.log(newRecipe);
     axiosWithAuth()
-        .post('/posts', newRecipe)
+        .post('/posts', addRecipe)
         .then(res => {
-            console.log(res)
+            console.log('res',res)
             dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data })
+            
         })
         .catch(err => {
             console.log(err.response)
@@ -108,10 +92,10 @@ export const addRecipe = (newRecipe) => dispatch => {
 export const DELETE_RECIPE_START = 'DELETE_RECIPE_START';
 export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS';
 export const DELETE_RECIPE_FAILURE = 'DELETE_RECIPE_FAILURE';
-export const deleteRecipe = (id, deleteRecipe) => dispatch => {
+export const deleteRecipe = (id) => dispatch => {
     dispatch({ type: DELETE_RECIPE_START})
     axiosWithAuth()
-        .delete(`/${id}`, deleteRecipe)
+        .delete(`posts/${id}`)
         .then(res => {
             console.log(res)
             dispatch({ type: DELETE_RECIPE_SUCCESS, payload: res.data })
@@ -128,7 +112,7 @@ export const EDIT_RECIPE_FAILURE = 'EDIT_RECIPE_FAILURE';
 export const editRecipe = (id, editRecipe) => dispatch => {
     dispatch({ type: EDIT_RECIPE_START})
     axiosWithAuth()
-        .delete(`/${id}`, editRecipe)
+        .put(`posts/${id}`, editRecipe)
         .then(res => {
             console.log(res)
             dispatch({ type: EDIT_RECIPE_SUCCESS, payload: res.data })
@@ -138,19 +122,19 @@ export const editRecipe = (id, editRecipe) => dispatch => {
             dispatch({type: EDIT_RECIPE_FAILURE, payload: err.response})
         })
 }
-
-export const LOAD_USERDATA = 'LOAD_USERDATA';
-export const LOAD_USERDATA_SUCCESS = 'LOAD_USERDATA_SUCCESS';
-export const LOAD_USERDATA_FAILURE = 'LOAD_USERDATA_FAILURE';
-
-export const loadRecipies = () => (dispatch) => {
-    dispatch({type:LOAD_USERDATA})
-    axios
-    .get(`${URL}/posts`)
-    .then(res => {
-      dispatch({type:LOAD_USERDATA_SUCCESS, payload:res.data })
-    })
-    .catch(err => {
-      dispatch({type:LOAD_USERDATA_FAILURE, payload:err.response })
-    })
+//GetCard
+export const GETCARD_FETCH = 'GETCARD_FETCH';
+export const GETCARD_SUCCESS = 'GETCARD_SUCCESS';
+export const GETCARD_FAILURE = 'GETCARD_FAILURE';
+const URL = 'https://chef-portfolio-bw.herokuapp.com/api'
+export const getCard = () => (dispatch) => {
+  dispatch ({type: GETCARD_FETCH})
+  axios
+  .get(`${URL}/posts/all`)
+  .then (res => {
+    dispatch({type: GETCARD_SUCCESS, payload:res.data});
+  })
+  .catch (err => {
+    dispatch({type: GETCARD_FAILURE, payload: err})
+  })
 }

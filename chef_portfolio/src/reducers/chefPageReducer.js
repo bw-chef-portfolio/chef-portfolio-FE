@@ -16,7 +16,7 @@ import {
 const initialState = {
   error: '',
   fetchingData: false,
-  chefInfo: [],
+  chefData: [],
 };
 
 export const chefPageReducer = (state = initialState, action) => {
@@ -25,8 +25,8 @@ export const chefPageReducer = (state = initialState, action) => {
       return {
         ...state,
         error: '',
-        fetchingData: true
-        
+        fetchingData: true,
+        addRecipe: false,
       };
     case FETCH_DATA_SUCCESS:
       return {
@@ -46,15 +46,16 @@ export const chefPageReducer = (state = initialState, action) => {
       return {
         ...state,
         error: '',
-        fetchingData: true
-        
+        fetchingData: true,
+        addRecipe: true
       };
     case ADD_RECIPE_SUCCESS:
       return {
         ...state,
         error: '',
         fetchingData: false,
-        chefData: action.payload
+        chefData: [...state.chefData, action.payload],
+        addRecipe: false
         
       };
     case ADD_RECIPE_FAILURE:

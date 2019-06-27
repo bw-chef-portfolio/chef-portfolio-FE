@@ -31,3 +31,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+img {
+  height: 400px;
+  width: 500px;
+}
+
+/* .modal {
+  color: blue;
+  width: 50%;
+  margin: 0 auto;
+  z-index: 100;
+} */
