@@ -7,7 +7,6 @@ import { addUser } from '../actions'
 class Registration extends React.Component {
       state = {
         userInfo: {
-            
             username: '',
             password: '',
             email: '',
@@ -38,34 +37,43 @@ class Registration extends React.Component {
 
     render() { 
         return ( 
-            <div>
-                <h1>Registration</h1>
-                <form>
-                    <p>Username: </p>
+            <div className="registration">
+                
+                <div className="register-form">
+                  <h1>Registration</h1>
+                <form className="form-1">
+                    <p>Username </p>
                     <input
                         type="text"
                         name="username"
+                        placeholder="username"
                         value={this.state.userInfo.username}
                         onChange={this.handleChanges}
                     ></input>
-                    <p>Password: </p>
+                    <p>Password </p>
                     <input
-                        type="text"
+                        type="password"
                         name="password"
+                        placeholder="password"
                         value={this.state.userInfo.password}
                         onChange={this.handleChanges}
                     ></input>
-                    <p>Email: </p>
+                  
+                
+                
+                    <p>Email </p>
                     <input
-                        type="text"
+                        type="email"
                         name="email"
+                        placeholder="email"
                         value={this.state.userInfo.email}
                         onChange={this.handleChanges}
                     ></input>
-                    <p>Location: </p>
+                    <p>Location </p>
                     <input
                         type="text"
                         name="location"
+                        placeholder="location"
                         value={this.state.userInfo.location}
                         onChange={this.handleChanges}
                     ></input>
@@ -73,6 +81,7 @@ class Registration extends React.Component {
                         Register
                     </button>
                 </form>
+                </div>
             </div>
          );
     }
