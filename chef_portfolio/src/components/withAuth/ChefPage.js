@@ -118,7 +118,6 @@ const mapStateToProps = state => {
         error: state.chefPageReducer.error,
         fetchingData: state.chefPageReducer.fetchingData,
         chefData: state.chefPageReducer.chefData,
-
     }
 }
 export default connect(
