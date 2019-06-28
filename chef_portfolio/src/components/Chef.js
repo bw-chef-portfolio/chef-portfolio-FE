@@ -73,7 +73,7 @@ class Chef extends React.Component {
         
         <Modal isOpen={this.state.modal} toggle={this.toggle}  >
           <h2 toggle={this.toggle} className="modal-title">Edit Recipe</h2>
-          <ModalBody>
+          <div>
             <form>
                 <p>Chef Name: </p>
                      <input
@@ -112,11 +112,11 @@ class Chef extends React.Component {
                         onChange={this.handleChanges}
                     ></input>
             </form>
-          </ModalBody>
-          <ModalFooter>
+          </div>
+          <div>
             <Button color="primary" onClick={this.toggle}>Edit</Button>{' '}
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-          </ModalFooter>
+          </div>
         </Modal>
       </div>
         </div>
