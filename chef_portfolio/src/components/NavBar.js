@@ -10,15 +10,20 @@ class NavBar extends React.Component {
     }
     render() { 
         return ( 
-            <div>
-                <nav>
+            <div className="container-nav">
+                <nav className="nav-bar">
+                    <div className="nav-logo">
+                        <Link to="">Chef Portfolio</Link>
+                        <img href="#" alt="stuff"></img>
+                    </div>
+                <div className="nav-links">
                     <Link to="/recipes">Home</Link>
                     <Link to="/login">Login</Link>
                     <Link to="/registration">Register</Link>
                     <Link to="/contact">Contact Us</Link>
+                </div>
                 </nav>
-
-           
+                
             </div>
          );
     }

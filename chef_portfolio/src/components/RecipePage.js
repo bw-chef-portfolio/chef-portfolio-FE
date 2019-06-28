@@ -6,7 +6,8 @@ import Recipies from './Cards/Recipiecards';
 import styled from 'styled-components';
 
 const Page = styled.div``;
-const Head = styled.h1``;
+const Head = styled.h1`font-family: "Mali", cursive;
+  font-weight: bold;`;
 
 class RecipePage extends React.Component {
     componentDidMount(){
@@ -15,7 +16,7 @@ class RecipePage extends React.Component {
     render() { 
         return ( 
             <Page>
-                <Head>Featured Recipies</Head>
+                <Head>Featured Recipes</Head>
                 {/* <nav>
                     <Link to="/recipes">Home</Link>
                     <Link to="/login">Login</Link>
@@ -29,7 +30,7 @@ class RecipePage extends React.Component {
          );
     }
 }
-const mapStatetoProps = (state) => {
+const mapStateToProps = (state) => {
     return{
         cards:state.cardReducer.cards,
         fetching:state.cardReducer.fetching,
@@ -38,4 +39,4 @@ const mapStatetoProps = (state) => {
     }
 }
  
-export default connect(mapStatetoProps,{getCard}) (RecipePage);
+export default connect(mapStateToProps,{getCard}) (RecipePage);

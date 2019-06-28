@@ -111,16 +111,17 @@ export const deleteRecipe = (id) => dispatch => {
 export const EDIT_RECIPE_START = 'EDIT_RECIPE_START';
 export const EDIT_RECIPE_SUCCESS = 'EDIT_RECIPE_SUCCESS';
 export const EDIT_RECIPE_FAILURE = 'EDIT_RECIPE_FAILURE';
-export const editRecipe = (id, editRecipe) => dispatch => {
+export const editRecipe = (id, editedRecipe) => dispatch => {
+  console.log("\n----------------------------------------------\n", editedRecipe, "\n----------------------------------------------\n")
   dispatch({ type: EDIT_RECIPE_START })
   axiosWithAuth()
-    .put(`posts/${id}`, editRecipe)
+    .put(`/posts/${id}`, editedRecipe)
     .then(res => {
       console.log(res)
       dispatch({ type: EDIT_RECIPE_SUCCESS, payload: res.data })
     })
     .catch(err => {
-      console.log(err.response)
+      console.log(err)
       dispatch({ type: EDIT_RECIPE_FAILURE, payload: err.response })
     })
 }

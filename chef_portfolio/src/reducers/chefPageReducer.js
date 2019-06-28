@@ -17,7 +17,6 @@ const initialState = {
   error: '',
   fetchingData: false,
   chefData: [],
-  addChefData: []
 };
 
 export const chefPageReducer = (state = initialState, action) => {
@@ -94,11 +93,13 @@ export const chefPageReducer = (state = initialState, action) => {
 
       };
     case EDIT_RECIPE_SUCCESS:
+      const newChefData = state.chefData.filter(Recipe => Recipe.id !== action.payload.id)
       return {
         ...state,
         error: '',
         fetchingData: false,
-        chefData: action.payload
+        chefData: [ ...newChefData, action.payload ],
+        editRecipe: false
 
       };
     case EDIT_RECIPE_FAILURE:
