@@ -56,54 +56,58 @@ class ChefPage extends React.Component {
 
 
     render() {
-        console.log("help", this.props.chefData)
+        // console.log("help",this.props.chefData)
         if (!this.props.chefData) {
             return <h3>Loading</h3>
         } else {
             return (
-                <div>
+                <div className="chef-page-title">
                     <h1>My Recipes</h1>
                     <ChefCard data={this.props.chefData} />
                     <h2>Add a new recipe!</h2>
-                    <form>
-                        <p>Chef Name: </p>
-                        <input
-                            type="text"
-                            name="chef_name"
-                            value={this.state.chefInfo.chef_name}
-                            onChange={this.handleChanges}
-                        ></input>
-                        <p>Recipe Name: </p>
-                        <input
-                            type="text"
-                            name="recipe_title"
-                            value={this.state.chefInfo.recipe_title}
-                            onChange={this.handleChanges}
-                        ></input>
-                        <p>Upload a photo</p>
-                        <input
-                            type="text"
-                            name="item_photo"
-                            value={this.state.chefInfo.item_photo}
-                            onChange={this.handleChanges}
-                        ></input>
-                        <p>Location: </p>
-                        <input
-                            type="text"
-                            name="chef_location"
-                            value={this.state.chefInfo.chef_location}
-                            onChange={this.handleChanges}
-                        ></input>
-                        <p>Ingredients: </p>
-                        <input
-                            type="text"
-                            name="item_ingredients"
-                            value={this.state.chefInfo.item_ingredients}
-                            onChange={this.handleChanges}
-                        ></input>
-                        <button onClick={this.addRecipe}>Submit</button>
-                    </form >
-                </div >
+                    <div className="chef-form">
+                        <form>
+                            <p>Chef Name: </p>
+                            <input
+                                type="text"
+                                name="chef_name"
+                                value={this.state.chefInfo.chef_name}
+                                onChange={this.handleChanges}
+                            ></input>
+                            <p>Recipe Name: </p>
+                            <input
+                                type="text"
+                                name="recipe_title"
+                                value={this.state.chefInfo.recipe_title}
+                                onChange={this.handleChanges}
+                            ></input>
+                            <p>Upload a photo</p>
+                            <input
+                                type="text"
+                                name="item_photo"
+                                value={this.state.chefInfo.item_photo}
+                                onChange={this.handleChanges}
+                            ></input>
+                            <p>Location: </p>
+                            <input
+                                type="text"
+                                name="chef_location"
+                                value={this.state.chefInfo.chef_location}
+                                onChange={this.handleChanges}
+                            ></input>
+                            <p>Ingredients: </p>
+                            <input
+                                type="text"
+                                name="item_ingredients"
+                                value={this.state.chefInfo.item_ingredients}
+                                onChange={this.handleChanges}
+
+                            ></input>
+
+                            <button onClick={this.addRecipe}>Submit</button>
+                        </form>
+                    </div>
+                </div>
             )
         }
     }
