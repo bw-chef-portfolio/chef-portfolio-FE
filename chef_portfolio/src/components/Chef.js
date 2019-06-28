@@ -9,15 +9,15 @@ constructor(props){
     super(props);
     this.state = {
 
-            id: this.props.data.id,
+        id: this.props.data.id,
+        
             chef_name: this.props.data.chef_name,
             recipe_title: this.props.data.recipe_title,
             item_photo: this.props.data.item_photo,
             chef_location: this.props.data.chef_location,
             item_ingredients: this.props.data.item_ingredients
-        }
-
-        this.handleChanges = this.handleChanges.bind(this);
+        
+    }
     
     }
     toggle = () => {
@@ -36,19 +36,19 @@ constructor(props){
             [e.target.name]: e.target.value        
     });
 }
-    editRecipe = e => {
-        e.preventDefault()
-        console.log(this.state)
-        this.props.editRecipe(this.props.data.id, this.state)
-        this.setState({
-                chef_name: '',
-                recipe_title: '',
-                item_photo: '',
-                chef_location: '',
-                item_ingredients: ''
-            
-        })
-    }
+editRecipe = e => {
+    e.preventDefault()
+    console.log(this.state)
+    this.props.editRecipe(this.props.data.id, this.state.chefDetails)
+    this.setState({
+        chef_name: '',
+        recipe_title: '',
+        item_photo: '',
+        chef_location: '',
+        item_ingredients: ''
+
+    })
+}
 
 
     render() {
