@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom';
 import {getCard} from '../actions'
 import Recipies from './Cards/Recipiecards';
 import styled from 'styled-components';
@@ -17,12 +16,6 @@ class RecipePage extends React.Component {
         return ( 
             <Page>
                 <Head>Featured Recipes</Head>
-                {/* <nav>
-                    <Link to="/recipes">Home</Link>
-                    <Link to="/login">Login</Link>
-                    <Link to="/registration">Register</Link>
-                    <Link to="/contact">Contact Us</Link>
-                </nav> */}
                 <Recipies cards={this.props.cards} />
             </Page>
 

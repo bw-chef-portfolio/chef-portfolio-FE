@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
+import { Button, Modal } from 'reactstrap';
 import { getData, deleteRecipe, editRecipe } from '../actions';
-import styled from 'styled-components'
 
 class Chef extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+        modal: false,
       id: this.props.data.id,
       chefDetails: {
         chef_name: '',
@@ -18,8 +17,6 @@ class Chef extends React.Component {
         item_ingredients: ''
       }
     }
-
-    // this.handleChanges = this.handleChanges.bind(this);
 
   }
 
@@ -53,29 +50,32 @@ class Chef extends React.Component {
       item_ingredients: ''
 
     })
+    this.toggle()
   }
+
+  
   render() {
-    // console.log("cheffry props", this.props)
+    console.log("function", this.fixMe)
     return (
-      <div>
-        <div>
+    
+          <div className="chef-collection">
+                <div className="chef-card">
+                    <img src={this.props.data.item_photo} alt="pictures"></img>
+                    <p>Chef Name: {this.props.data.chef_name}</p>
+                    <p>Recipe Name: {this.props.data.recipe_title}</p>
+                    <p>Chef Location: {this.props.data.chef_location}</p>
+                    <p>Recipe Ingredients: {this.props.data.item_ingredients}</p>
+                    <button onClick={this.toggle}>Edit</button>
+                    <button onClick={() => this.props.deleteRecipe(this.props.data.id)}>Delete</button>  
+                </div>
 
-          <p>Chef Name: </p>
-          <p>{this.props.data.chef_name}</p>
-          <p>Recipe Name: </p>
-          <p>{this.props.data.recipe_title}</p>
-          <img src={this.props.data.item_photo} alt="pictures"></img>
-          <p>Chef Location: </p>
-          <p>{this.props.data.chef_location}</p>
-          <button onClick={() => this.props.deleteRecipe(this.props.data.id)}>Delete</button>
-          {/* <button onClick={this.editRecipe}>Edit</button> */}
-        </div>
+            <div>
 
-        <div>
-          <Button color="danger" onClick={this.toggle}>Edit</Button>
-          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} >
-            <ModalHeader toggle={this.toggle}>Edit Recipe</ModalHeader>
-            <ModalBody>
+        
+          
+          <Modal isOpen={this.state.modal}  >
+            <div  className="modal-title">Edit Recipe</div>
+            <div>
               <form>
                 <p>Chef Name: </p>
                 <input
@@ -114,11 +114,11 @@ class Chef extends React.Component {
                   onChange={this.handleChanges}
                 ></input>
               </form>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.editRecipe}>Edit</Button>{' '}
-              <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-            </ModalFooter>
+            </div>
+            <div>
+              <Button onClick={this.editRecipe}>Edit</Button>{' '}
+              <Button onClick={this.toggle}>Cancel</Button>
+            </div>
           </Modal>
         </div>
       </div>

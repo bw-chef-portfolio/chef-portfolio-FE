@@ -6,7 +6,7 @@ import ChefPage from './components/withAuth/ChefPage'
 import { Route } from 'react-router-dom'
 import './App.css';
 import Login from "./components/Login/Login.js";
-import PrivateRoute from './components/withAuth/authRouter'
+import PrivateRoute from './components/withAuth/AuthRouter'
 
 function App() {
   return (

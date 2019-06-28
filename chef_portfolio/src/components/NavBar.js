@@ -13,11 +13,11 @@ class NavBar extends React.Component {
             <div className="container-nav">
                 <nav className="nav-bar">
                     <div className="nav-logo">
-                        <Link to="">Chef Portfolio</Link>
+                        <a href="https://bw-chef-portfolio.netlify.com/index.html">Chef Portfolio</a>
                         <img href="#" alt="stuff"></img>
                     </div>
                 <div className="nav-links">
-                    <Link to="/recipes">Home</Link>
+                    <Link to="/recipes">Recipes</Link>
                     <Link to="/login">Login</Link>
                     <Link to="/registration">Register</Link>
                     <Link to="/contact">Contact Us</Link>
