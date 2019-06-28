@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
+import { Button, Modal } from 'reactstrap';
 import { getData, deleteRecipe, editRecipe } from '../actions';
-import styled from 'styled-components'
 
 class Chef extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+        modal: false,
       id: this.props.data.id,
       chefDetails: {
         chef_name: '',
@@ -18,8 +17,6 @@ class Chef extends React.Component {
         item_ingredients: ''
       }
     }
-
-    // this.handleChanges = this.handleChanges.bind(this);
 
   }
 
@@ -53,12 +50,12 @@ class Chef extends React.Component {
       item_ingredients: ''
 
     })
-
+    this.toggle()
   }
 
   
   render() {
-    // console.log("cheffry props", this.props)
+    console.log("function", this.fixMe)
     return (
     
           <div className="chef-collection">
@@ -76,8 +73,8 @@ class Chef extends React.Component {
 
         
           
-          <Modal isOpen={this.state.modal} toggle={this.toggle} >
-            <div toggle={this.toggle} className="modal-title">Edit Recipe</div>
+          <Modal isOpen={this.state.modal}  >
+            <div  className="modal-title">Edit Recipe</div>
             <div>
               <form>
                 <p>Chef Name: </p>
